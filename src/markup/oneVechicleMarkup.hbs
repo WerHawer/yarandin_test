@@ -1,0 +1,50 @@
+
+    <h2 class="h2">{{name}}</h2>
+
+<div class="vehicle__description ">
+
+    <div class="vehicle__characteristics div-block-3">
+    <h3 class="h3">Characteristics:</h3>
+
+    <ul class="list">
+    <li class="list-element">Model: {{model}}</li>
+    <li class="list-element">Manufacturer: {{manufacturer}}</li>
+    <li class="list-element">Cost in credits: {{cost_in_credits}}</li>
+    <li class="list-element">length: {{length }}</li>
+    <li class="list-element">max_atmosphering_speed: {{max_atmosphering_speed}}</li>
+    <li class="list-element">crew: {{crew}}</li>
+    <li class="list-element">passengers: {{passengers}}</li>
+    <li class="list-element">cargo_capacity: {{cargo_capacity}}</li>
+    <li class="list-element">consumables: {{consumables}}</li>
+    <li class="list-element">vehicle_class: {{vehicle_class}}</li>
+    </ul>
+    </div>
+
+    <div class="vehicle__pilot div-block-3">
+    <h3 class="h3">Pilots:</h3>
+<ul class="list">
+  {{#if pilots}}
+    {{#each pilots}}
+    <li class="list-element" data-url={{this.path}} data-type="people">{{{this.name}}}</li>
+    {{/each}}
+    {{else}}
+    <li class="no-result">No pilots</li>
+    {{/if}}
+</ul>
+</div>
+
+<div class="vehicle__films div-block-3">
+    <h3 class="h3">Films:</h3>
+<ul class="list">
+    {{#if films}}
+    {{#each films}}
+    <li class="list-element" data-url={{this.path}} data-type="film">{{{this.name}}}</li>
+    {{/each}}
+    {{else}}
+    <li class="no-result">No films</li>
+    {{/if}}
+</ul>
+</div>
+
+
+</div>
