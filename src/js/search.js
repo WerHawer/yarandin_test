@@ -29,7 +29,6 @@ export async function getInfo(obj) {
       });
       const resultArr = await axios.all(names);
       newObj[key] = resultArr;
-      console.log(resultArr);
     } else if (typeof obj[key] === 'object' && !obj[key].length) {
       newObj[key] = undefined;
     } else if (key === 'homeworld') {
