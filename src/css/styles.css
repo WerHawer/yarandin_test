@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  background-image: url(../img/thumb-1920-653613.jpg);
+  background-image: url(../img/bgr.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   color: gold;
@@ -45,7 +45,7 @@ body {
   width: 80%;
   height: 100vh;
   max-height: 100vh;
-  background-color: rgba(156, 154, 154, 0.5);
+  background-color: rgba(156, 154, 154, 0.2);
   padding: 15px;
   padding-bottom: 30px;
 }
