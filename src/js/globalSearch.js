@@ -33,34 +33,42 @@ export async function findByInput() {
 
   const searchRequestUrl = urls.map(url => url + value);
 
-  const answer = searchRequestUrl.map(
-    async url => await getApi.searchDetails(url),
-  );
+  const answer = searchRequestUrl.map(async url => {
+    try {
+      return await getApi.searchDetails(url);
+    } catch (err) {
+      throw err;
+    }
+  });
 
-  const result = await axios.all(answer);
+  try {
+    const result = await axios.all(answer);
 
-  const finalResult = result.map(obj => obj.results).flat();
+    const finalResult = result.map(obj => obj.results).flat();
 
-  if (!finalResult.length) {
-    finalObj.result = undefined;
+    if (!finalResult.length) {
+      finalObj.result = undefined;
+      loadAnimationOff();
+      findedObjectsRender(finalObj);
+
+      return finalObj;
+    }
+
+    const resultedArr = finalResult.map(obj => {
+      const type = findType(obj);
+      const name = obj.name || obj.title;
+      const url = obj.url;
+
+      return { name, url, type };
+    });
+    finalObj.result = resultedArr;
+
     loadAnimationOff();
     findedObjectsRender(finalObj);
-
     return finalObj;
+  } catch (err) {
+    alert(err);
   }
-
-  const resultedArr = finalResult.map(obj => {
-    const type = findType(obj);
-    const name = obj.name || obj.title;
-    const url = obj.url;
-
-    return { name, url, type };
-  });
-  finalObj.result = resultedArr;
-
-  loadAnimationOff();
-  findedObjectsRender(finalObj);
-  return finalObj;
 }
 
 function findType(obj) {

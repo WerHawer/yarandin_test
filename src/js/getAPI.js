@@ -9,17 +9,24 @@ export default {
   filmList: [],
 
   async getList() {
-    const filmList = await axios.get(baseUrl + this.query);
+    try {
+      const filmList = await axios.get(baseUrl + this.query);
+      const result = filmList.data.results;
 
-    const result = filmList.data.results;
-
-    return result;
+      return result;
+    } catch (err) {
+      alert(err);
+    }
   },
 
   async searchDetails(url) {
-    const result = await axios.get(url);
+    try {
+      const result = await axios.get(url);
 
-    return result.data;
+      return result.data;
+    } catch (err) {
+      alert(err);
+    }
   },
 
   get filmsArr() {
