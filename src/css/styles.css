@@ -82,6 +82,12 @@ body {
   color: #4fc6f5;
 }
 
+.list-element-nh {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 3px;
+}
+
 .div-block-4 {
   width: 25%;
 }
