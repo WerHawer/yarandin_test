@@ -6,7 +6,9 @@ import { renderFilmsList, cleanPage } from './render';
 
 let revers = 1;
 
-function sortListByName() {
+function sortListByName(e) {
+  if (e.target.dataset.action !== 'sort') return;
+
   getApi.filmList.sort((a, b) => {
     const nameA = a.title.toLowerCase();
     const nameB = b.title.toLowerCase();

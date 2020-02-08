@@ -12,21 +12,24 @@ import { findObjByTap, getInfo } from './search';
 import sortListByName from './sortFilmList';
 
 refs.output.addEventListener('click', findObjByTap);
+window.addEventListener('click', sortListByName);
 FirstRender();
 
 export function renderFilmsList(item) {
   const markup = filmsListMarkup(item);
   loadAnimationOff();
   refs.output.insertAdjacentHTML('beforeend', markup);
-  const sortBtn = document.querySelector('.sort_btn');
-  sortBtn.addEventListener('click', sortListByName);
 }
 
 export async function FirstRender() {
-  const filmList = await getApi.getList();
+  try {
+    const filmList = await getApi.getList();
 
-  getApi.filmsArr = filmList;
-  renderFilmsList(filmList);
+    getApi.filmsArr = filmList;
+    renderFilmsList(filmList);
+  } catch (err) {
+    alert(err);
+  }
 }
 
 export function cleanPage(page) {
