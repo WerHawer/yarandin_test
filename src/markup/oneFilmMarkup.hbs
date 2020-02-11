@@ -46,12 +46,12 @@
 <div class="one-film__vehicles div-block-4">
 <h3 class="h3">Vehicles</h3>
 <ul class="list one-film__list">
-      {{#if vehicles}}
-    {{#each vehicles}}
-    <li class="one-film__list-element  list-element" data-url={{this.path}} data-type="vehicle">{{{this.name}}}</li>
-    {{/each}}
+    {{#if vehicles}}
+        {{#each vehicles}}
+        <li class="one-film__list-element  list-element" data-url={{this.path}} data-type="vehicle">{{{this.name}}}</li>
+        {{/each}}
     {{else}}
-    <li class="no-result">No vehicles</li>
+        <li class="no-result">No vehicles</li>
     {{/if}}
 </ul>
 </div>

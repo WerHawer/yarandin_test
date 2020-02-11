@@ -2,13 +2,9 @@
 import debounce from 'debounce';
 import axios from 'axios';
 import refs from './refs';
-import {
-  findedObjectsRender,
-  FirstRender,
-  loadAnimationOn,
-  loadAnimationOff,
-} from './render';
+import { findedObjectsRender, FirstRender } from './render';
 import getApi from './getAPI';
+import preLoader from './preLoader';
 
 refs.input.addEventListener('input', debounce(findByInput, 700));
 const urls = [
@@ -21,7 +17,7 @@ const urls = [
 ];
 
 export async function findByInput() {
-  loadAnimationOn();
+  preLoader.start();
 
   const finalObj = {};
   const value = refs.input.value.toLowerCase();
@@ -48,7 +44,7 @@ export async function findByInput() {
 
     if (!finalResult.length) {
       finalObj.result = undefined;
-      loadAnimationOff();
+      preLoader.stop();
       findedObjectsRender(finalObj);
 
       return finalObj;
@@ -63,7 +59,7 @@ export async function findByInput() {
     });
     finalObj.result = resultedArr;
 
-    loadAnimationOff();
+    preLoader.stop();
     findedObjectsRender(finalObj);
     return finalObj;
   } catch (err) {

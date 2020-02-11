@@ -2,16 +2,17 @@
 
 import axios from 'axios';
 import getApi from './getAPI';
-import { loadAnimationOn, oneObjRender } from './render';
+import { oneObjRender } from './render';
+import preLoader from './preLoader';
 
-export async function findObjByTap(e) {
+export async function getInfoByTap(e) {
   try {
     const target = e.target;
     const url = target.dataset.url;
 
     if (!url) return;
 
-    loadAnimationOn();
+    preLoader.start();
     const oneObj = await getApi.searchDetails(url);
     oneObjRender(oneObj, target);
   } catch (err) {

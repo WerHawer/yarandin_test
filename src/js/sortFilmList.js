@@ -9,14 +9,7 @@ let revers = 1;
 function sortListByName(e) {
   if (e.target.dataset.action !== 'sort') return;
 
-  getApi.filmList.sort((a, b) => {
-    const nameA = a.title.toLowerCase();
-    const nameB = b.title.toLowerCase();
-
-    if (nameA > nameB) return 1 * revers;
-    if (nameA < nameB) return -1 * revers;
-    return 0;
-  });
+  getApi.filmList.sort((a, b) => a.title.localeCompare(b.title, 'en') * revers);
 
   revers = revers * -1;
   cleanPage(refs.output);
